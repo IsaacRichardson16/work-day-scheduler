@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Alata', sans-serif;
   font-size: 16px;
   line-height: 1;
 }
@@ -9,31 +9,35 @@ textarea{
   border: none;
   resize: none;
   color: #000000;
-  border-left: 1px solid black;
+  border: 3px solid black;
   padding: 10px;
 }
 
 .jumbotron {
   text-align: center;
   background-color: transparent;
-  color: black;
+  color: white;
   border-radius: 0;
   border-bottom: 10px solid black;
+  background-color: lightslategray;
 }
 
 .description{
   white-space: pre-wrap;
 }
 
-.time-block{
-  text-align: center;
-  border-radius: 15px;
+.timeBox{
+  text-align: left;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: azure;
+   
 }
 
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;;
+  border-top: 1px solid white;
 }
 
 .hour {
@@ -57,15 +61,19 @@ textarea{
   color: white;
 }
 
-.saveBtn {
+.submitBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06AED5;
+  background-color: slategray;
   color: white;
 }
 
-.saveBtn i:hover {
+.submitBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+.row{
+  margin: 1rem;
 }
