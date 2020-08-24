@@ -1,24 +1,44 @@
-// current day in jumbotron
+// Current Day Jumbo
 
 let m = moment().format("dddd" + ", " + "MMMM" + " " + "Do");
-$('#currentDay').append(m);
+$("#currentDay").append(m);
 
-// set constants
+const currentHour = moment().hour();
+// Set Constants
+const rows = document.querySelectorAll(".row");
 
-const timeBox = document.getElementsByClassName("timeBox")
-const submitBtn = document.getElementsByClassName("btn8")
-const timeBoxOutput = document.getElementsByClassName("timeBox8")
-// button event listener
-
-submitBtn.onclick = function(){
-    const timeBox = timeBox.value;
-
-    console.log(timeBox)
+// Set and retrieve local storage
+function setLocalStorage(hour, value) {
+  localStorage.setItem(hour, value);
+}
+function getLocalStorage(hour) {
+  return localStorage.getItem(hour);
 }
 
-// saving individual inputs
+rows.forEach(row => {
+  // split the label of the row to time and AM/PM
+  const rowHourDetails = row.querySelector(".hour").innerHTML.split(" ");
+  const rowHour = parseInt(rowHourDetails[0]);
+  const isAfternoon = rowHourDetails[1] === "PM";
+  const relativeHour = isAfternoon && rowHour !== 12 ? rowHour + 12 : rowHour;
+  const textarea = row.querySelector(".timeBox");
+  const submitBtn = row.querySelector(".submitBtn");
 
-// saving in local storage 
+  // Set the color of the text area
 
+  if (relativeHour === currentHour) {
+    textarea.setAttribute("style", "background-color: red");
+  } else if (relativeHour > currentHour) {
+    textarea.setAttribute("style", "background-color: green");
+  } else {
+    textarea.setAttribute("style", "background-color: gray");
+  }
 
-// changing text are background color when  time is scheduled
+  if (getLocalStorage(rowHour)) {
+    textarea.innerHTML = getLocalStorage(rowHour);
+  }
+  submitBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    setLocalStorage(rowHour, textarea.value);
+  });
+});
